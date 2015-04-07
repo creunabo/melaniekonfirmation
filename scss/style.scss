@@ -1,0 +1,131 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:400,700");
+
+$baseDark: #2e2e2e;
+$baseFontDark: #1c1c1c;
+
+$blue: #2196f3;
+
+$easeInOutQuint: cubic-bezier(0.480, 0.005, 0.070, 1.000);
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Lato;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: $baseFontDark;
+    font-smoothing: antialiased;
+    background: white;
+}
+
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    box-sizing: content-box;
+    pointer-events: none;
+}
+
+ul,
+li {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: $baseFontDark;
+}
+
+.m-insta {
+  $w: 500px;
+  
+  width: $w;
+  display: block;
+  vertical-align: top;
+  box-shadow: 0 4px 6px rgba(0,0,0,.3);
+  margin: 10px;
+  position: relative;
+  
+  /*.no-touch & {
+    opacity: 0;
+    transition: opacity 1.7s $easeInOutQuint, transform 1.2s $easeInOutQuint;
+    transform: translate(0, 80px);
+    
+    &:hover {
+      .insta-img {
+        transform: scale(1.1);
+      }
+    }
+  }*/
+  
+  .insta-img-ctn {
+    width: $w;
+    height: $w;
+    overflow: hidden;
+		img.insta-img {
+			width: $w;
+			height: $w;
+		}
+  }
+  
+  .insta-img {
+    display: block;
+    transform: scale(1);
+    backface-visibility: hidden;
+    transition: transform 1.8s;
+  }
+  
+  .insta-content {
+    padding: 15px;
+    background: white;
+  }
+  
+  .insta-likes {
+    background: #34495E;
+		color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 15px;
+		padding: 2px 10px;
+  }
+	
+	.insta-text {
+		word-wrap: break-word;
+	}
+  
+  .insta-user {
+    margin-top: 13px;
+    text-align: right;
+  }
+}
+
+.insta-ctn {
+  height: 100%;
+}
+
+.no-touch .insta-ctn {
+   .m-insta.is-ready {
+    opacity: 1;
+    transform: translate(0, 0);
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        transition-delay: .17s * $i;
+      }
+    }
+  }
+}
