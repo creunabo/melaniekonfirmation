@@ -12,11 +12,12 @@ var InstagramFeed = React.createClass({
     	url: this.props.source,
       type: "GET",
       dataType: "jsonp",
+			cache: true
+
     }).done(function(response) {
 
 			// Make data object
 			var responseData = response.data.map(function(img){
-//				console.log('img', img);
 
 					return {
 							id: img.id,
@@ -24,7 +25,7 @@ var InstagramFeed = React.createClass({
 							src: img.images.standard_resolution.url,
 							desc: img.caption ? img.caption.text : '',
 							likes: img.likes.count,
-							user: img.user.full_name,
+							user: img.user.full_name === '' ? "@" + img.user.username : img.user.full_name,
 							created: new Date(parseInt(img.caption.created_time) * 1000)
 					};
 
@@ -59,7 +60,7 @@ var InstagramFeed = React.createClass({
 	},
 	componentDidUpdate: function() {
 		//console.log('running masonry');
-		console.log('instraCtn',instaCtn);
+		//console.log('instraCtn',instaCtn);
 		var masonryCtn = new Masonry( instaCtn.querySelector('div'), {
 			//transitionDuration: 0.4
 		});
@@ -87,7 +88,7 @@ var InstagramPost = React.createClass({
 });
 
 React.renderComponent(
-	<InstagramFeed source="https://api.instagram.com/v1/tags/melaniemus/media/recent?access_token=206227214.3f45faf.3f30a5f9f8fb4818a376b168db5d720e" polling="10000" />,
+	<InstagramFeed source="https://api.instagram.com/v1/tags/melaniemus/media/recent?access_token=206227214.3f45faf.3f30a5f9f8fb4818a376b168db5d720e" polling="1000" />,
 	instaCtn
 );
 
